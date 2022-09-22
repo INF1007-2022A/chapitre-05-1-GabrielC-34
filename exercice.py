@@ -6,29 +6,83 @@ from typing import List
 
 
 def convert_to_absolute(number: float) -> float:
-    return 0
+    if (number < 0):
+        number = (-1)*number
+    return number
 
 
 def use_prefixes() -> List[str]:
     prefixes, suffixe = 'JKLMNOPQ', 'ack'
-
-    return [""]
+    liste = []
+    for l in prefixes:
+        stringFinale = ''.join((l,suffixe))
+        liste.append(stringFinale)
+    return liste
 
 
 def prime_integer_summation() -> int:
-    return 0
+    sum = 0
+    nbrPrime = 0
+    x=2
+    while nbrPrime < 100:
+        isPrime = True
+        for i in range (2, x-1):
+            if x%i == 0:
+                isPrime = False
+                break
+        if isPrime:
+            sum+=x
+            nbrPrime+=1
+        x+=1
+    return sum
 
 
 def factorial(number: int) -> int:
-    return 0
+    factorielle = number
+    while number>1:
+        number-=1
+        factorielle = factorielle*(number)
+    return factorielle
 
 
 def use_continue() -> None:
-    pass
+    for x in range(1,11):
+        if x == 5:
+            continue
+        print(x)
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return []
+    listeAcceptance = []
+    for group in groups:
+        isValid = True
+        above70 = False
+        exac50 = False
+        exac25 = False
+
+        for member in group:
+            if member == 25:
+                isValid = True
+                exac25 = True
+                break
+            elif member < 18:
+                isValid = False
+            elif member > 70:
+                above70 = True
+            elif member == 50:
+                exac50 = True
+
+        if above70 and exac50 and not exac25:
+            isValid = False
+
+        if len(group) > 10 or len(group) <= 3:
+            isValid = False
+
+        if isValid:
+            listeAcceptance.append(True)
+        else:
+            listeAcceptance.append(False)
+    return listeAcceptance
 
 
 def main() -> None:
